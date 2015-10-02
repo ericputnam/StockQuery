@@ -66,7 +66,7 @@ Before starting the application please make sure that you have the right connect
 
 	var connection = {
 	    host: 'localhost',
-	    port: 5003,
+	    port: 5001,
 	    user: 'admin',
 	    password: 'admin'
 	};
