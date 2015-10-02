@@ -1,0 +1,11 @@
+{
+  "rest-api":
+  {
+    "name": "5001-stockquery",
+    "group": "Default",
+    "database": "stockquery-content",
+    "modules-database": "stockquery-modules",
+    "port": "5001",
+    "forests-per-host": 1
+  }
+}

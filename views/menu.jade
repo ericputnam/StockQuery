@@ -1,0 +1,23 @@
+.navbar.navbar-default.navbar-fixed-top(role='navigation', bs-navbar)
+  .container
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='#/') Geophoto
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li(match-route='/')
+          a(href='#/') Home
+        li(match-route='/map|/edit/.*')
+          a(href='#/map') Map
+        li(match-route='/geosearch|/textsearch')
+          a(class='dropdown-toggle', data-toggle='dropdown', role='button', aria-expanded='false') Search
+            span(class='caret')
+          ul(class='dropdown-menu', role='menu')
+            li(match-route='/geosearch')
+              a(href="#/geosearch") Geo Search
+            li(match-route='/textsearch')
+              a(href="#/textsearch") Text Search

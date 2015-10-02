@@ -1,0 +1,31 @@
+{
+  "triple-index": true,
+  "uri-lexicon": true,
+  "collection-lexicon": true,
+
+    "range-element-index": [
+    {
+      "scalar-type": "string",
+      "namespace-uri": "",
+      "localname": "Symbol",
+      "collation": "http://marklogic.com/collation/",
+      "range-value-positions": false,
+      "invalid-values": "reject"
+    },
+    {
+      "scalar-type": "double",
+      "namespace-uri": "",
+      "localname": "Open",
+      "collation": "http://marklogic.com/collation/",
+      "range-value-positions": false,
+      "invalid-values": "reject"
+    },
+    {
+      "scalar-type": "double",
+      "namespace-uri": "",
+      "localname": "Close",
+      "collation": "http://marklogic.com/collation/",
+      "range-value-positions": false,
+      "invalid-values": "reject"
+    }]
+}

@@ -1,0 +1,31 @@
+<export><workspace name="Geophoto"><query name="open document" focus="false" active="true" mode="javascript">fn.doc('/image/IMG_4457.jpg.json');</query><query name="geospatial search/xquery" focus="false" active="true" mode="xquery">(:  cts:search(
+    fn:doc(),
+    cts:path-geospatial-query(
+      "/location/coordinates",
+      cts:circle(3.5, cts:point(10.4000, -75.5000))
+    )
+  )
+:)
+
+xdmp:plan(
+  cts:search(
+    fn:doc(),
+    cts:element-child-geospatial-query(
+      xs:QName('location'),
+      xs:QName('coordinates'),
+      cts:circle(3.5, cts:point(10.4000, -75.5000))
+    )
+  )
+);</query><query name="js-plan" focus="false" active="true" mode="javascript">cts.plan(
+  cts.jsonPropertyChildGeospatialQuery(
+    "location",
+    "coordinates",
+    cts.circle(3.5, cts.point(10.4000, -75.5000))
+  )
+);</query><query name="js-search" focus="false" active="true" mode="javascript">cts.search(
+  cts.jsonPropertyChildGeospatialQuery(
+    "location",
+    "coordinates",
+    cts.circle(5.5, cts.point(10.4000, -75.5000)) //Cartagena, Colombia
+  )
+);</query><query name="simple js-cts-search" focus="false" active="true" mode="javascript">cts.search('Medellin')</query></workspace></export>
