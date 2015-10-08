@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular
-    .module('geophoto')
+    .module('stockquery')
     .factory('httpRequestInterceptor', httpRequestInterceptor);
 
     httpRequestInterceptor.$inject = ['$q', '$location'];

@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular
-    .module('geophoto')
+    .module('stockquery')
     .controller('MapController', MapController);
 
     MapController.$inject = ['$cacheFactory', 'photofactory'];

@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('geophoto')
+  angular.module('stockquery')
   .directive('bsNavbar', function($location) {
     'use strict';
     return {

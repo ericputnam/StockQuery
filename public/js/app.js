@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular
-    .module('geophoto', [
+    .module('stockquery', [
       'ngRoute'
     ])
     .config(config);

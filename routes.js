@@ -26,7 +26,7 @@ e.g.
   "binary": "/binary/IMG_6193.jpg"
 }
 */
-var selectAll = function selectAll() {
+/*var selectAll = function selectAll() {
     return db.documents.query(
       qb.where(
         qb.collection('image')
@@ -36,12 +36,12 @@ var selectAll = function selectAll() {
       )
       .slice(0,300) //return 300 documents "per page" (pagination)
     ).result();
-};
+};*/
 
 /* This function selects one image from the database */
-var selectOne = function selectOne(uri) {
+/*var selectOne = function selectOne(uri) {
     return db.documents.read('/image/' + uri + '.json').result();
-};
+};*/
 
 /* This function updates the document. From the frontend we are allowed to set/change
 the title of an image.
@@ -75,6 +75,7 @@ and it also has support for 4 geospatial types. We have circle, square, polygon
 and point. In this function we are using the geospatial circle
 */
 var search = function search(arg) {
+  console.log("I am here");
   if (typeof arg === 'object') {
     var radius   = parseInt(arg.radius);
     var lat      = parseFloat(arg.lat);
@@ -91,10 +92,17 @@ var search = function search(arg) {
   } else {
     return db.documents.query(
       qb.where(
-        qb.collection('image'),
+        qb.term('AA')
+      )
+      .withOptions({metrics: false, categories: 'metadata'})
+    ).result()
+
+    /*return db.documents.query(
+      qb.where(
+        qb.collection('stockquote'),
         qb.parsedFrom(arg)
       ).slice(0,300)
-    ).result();
+    ).result();*/
   }
 };
 
@@ -208,7 +216,7 @@ var apisearch = function(req, res) {
 
 var apisemantic = function(req, res) {
   var country = req.params.country;
-  var options = ['capital', 'imageFlag', 'imageMap', 'homepage', 'anthem', 'areaKm', 'currencyCode', 'timeZone', 'abstract'];
+  var options = ['capital', 'imageFlag', 'imageMap', 'searchhomepage', 'anthem', 'areaKm', 'currencyCode', 'timeZone', 'abstract'];
   var data = {};
   var counter = 0;
   semantic(country)

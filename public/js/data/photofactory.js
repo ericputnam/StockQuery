@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular
-    .module('geophoto')
+    .module('stockquery')
     .factory('photofactory', photofactory);
 
     photofactory.$inject = ['$http'];

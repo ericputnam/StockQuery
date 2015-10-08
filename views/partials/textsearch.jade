@@ -1,6 +1,6 @@
 .container
   .padded
-    p Please add a search term in the input box.
+    p Please add a stock symbol to search for a given quote
     form(role='form', class='form-inline', ng-submit='vm.search()', name='searchForm')
       .form-group
         input(type='text', class='form-control', placeholder='Search term', ng-model='vm.term')
@@ -12,4 +12,4 @@
     .row
       ul
         li(ng-repeat='result in vm.results')
-          a(href='#/edit/{{ result.content.filename }}') {{ result.content.title || result.content.filename }}
+          a(href='#/edit/{{ result.uri }}') {{ result.uri }}

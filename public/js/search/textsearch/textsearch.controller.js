@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   angular
-  .module('geophoto')
+  .module('stockquery')
   .controller('textSearchController', textSearchController);
 
   textSearchController.$inject = ['photofactory'];
