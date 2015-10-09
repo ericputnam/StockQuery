@@ -29,13 +29,13 @@ Basic route configuration
 */
 router.route('/').get(routes.index);
 router.route('/api/').get(apiroutes.index);
-router.route('/api/image/:id').get(apiroutes.image);
+router.route('/api/stockquery/:id').get(apiroutes.getsinglequote);
 router.route('/api/image/search/:radius/:lat/:lng').get(apiroutes.search);
-router.route('/api/image/search/:term').get(apiroutes.search);
+router.route('/api/stockquery/search/:term').get(apiroutes.search);
 //router.route('/api/imagedata/:id').get(apiroutes.imagedata);
 router.route('/api/image/update/:id/:update').post(apiroutes.update);
 router.route('/api/semantic/info/:country').get(apiroutes.semantic);
-router.route('/api/:id').get(apiroutes.image);
+router.route('/api/:id').get(apiroutes.getsinglequote);
 
 //route declaration for the partials
 router.route('/partials/:name').get(routes.partials);

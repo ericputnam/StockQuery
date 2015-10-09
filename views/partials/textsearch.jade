@@ -11,5 +11,5 @@
     p {{ vm.results.length  }} {{ vm.results.length === 1 ? 'match' : 'matches' }}
     .row
       ul
-        li(ng-repeat='result in vm.results')
-          a(href='#/edit/{{ result.uri }}') {{ result.uri }}
+        li(ng-repeat='result in vm.results[0].results')
+          a(href='#/edit/{{result.uri.substring(result.uri.lastIndexOf("/") + 1, result.uri.length)}}') {{ result.uri.substring(result.uri.lastIndexOf('/') + 1, result.uri.length) }}

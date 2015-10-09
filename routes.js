@@ -68,31 +68,11 @@ var updateDocument = function(uri, update) {
   .result();
 };
 
-/* This function is responsible for doing a geospatial search
-
-Geospatial search in MarkLogic uses a geospatial object (in thise case a geo path)
-and it also has support for 4 geospatial types. We have circle, square, polygon
-and point. In this function we are using the geospatial circle
-*/
+/* This function is responsible for performing a quote search */
 var search = function search(arg) {
-  console.log("I am here");
-  if (typeof arg === 'object') {
-    var radius   = parseInt(arg.radius);
-    var lat      = parseFloat(arg.lat);
-    var lng      = parseFloat(arg.lng);
     return db.documents.query(
       qb.where(
-          qb.collection('image'),
-              qb.geospatial(
-                qb.geoProperty(qb.property('location'), qb.property('coordinates')),
-                qb.circle(radius, lat, lng)
-              )
-          ).slice(0,300)
-      ).result();
-  } else {
-    return db.documents.query(
-      qb.where(
-        qb.term('AA')
+        qb.term(arg)
       )
       .withOptions({metrics: false, categories: 'metadata'})
     ).result()
@@ -103,7 +83,6 @@ var search = function search(arg) {
         qb.parsedFrom(arg)
       ).slice(0,300)
     ).result();*/
-  }
 };
 
 var semantic = function semantic(country) {
@@ -147,7 +126,7 @@ var apiindex = function(req, res) {
 };
 
 /* wrapper function to retrieve one document information */
-var apiimage = function(req, res) {
+var apisinglequote = function(req, res) {
   var id = req.params.id;
   selectOne(id).then(function(document) {
     if (document.length !== 0) {
@@ -184,26 +163,9 @@ var apiupdate = function(req, res) {
   });
 };
 
-/* wrapper function for the geospatial search */
+/* wrapper function for search */
 var apisearch = function(req, res) {
-  //if radius exists it is a geospatial search
-  if (req.params.radius) {
-    var radius = req.params.radius;
-    var lat    = req.params.lat;
-    var lng    = req.params.lng;
-
-    var searchObj = {
-        radius: radius,
-        lat: lat,
-        lng: lng
-    };
-
-    search(searchObj).then(function(data) {
-        res.json(data);
-    }).catch(function(error) {
-      console.log('Error: ', error);
-    });
-  } else {
+    //Parse the term you'd like to search with and call the search function
     var term = req.params.term;
 
     search(term).then(function(data) {
@@ -211,7 +173,6 @@ var apisearch = function(req, res) {
     }).catch(function(error) {
       console.log('Error: ', error);
     });
-  }
 };
 
 var apisemantic = function(req, res) {
@@ -265,7 +226,7 @@ module.exports = {
     },
     api : {
         index: apiindex,
-        image: apiimage,
+        getsinglequote: apisinglequote,
         imagedata: apiimagedata,
         update: apiupdate,
         search: apisearch,

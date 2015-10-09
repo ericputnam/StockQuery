@@ -25,7 +25,7 @@
 
       function showOnePhoto(id) {
         return $http
-          .get('/api/image/' + id, {cache: true})
+          .get('/api/stockquery/' + id, {cache: true})
           .then(complete)
           .catch(failed);
       }
@@ -47,7 +47,7 @@
 
       function textSearch(term) {
         return $http
-          .get('/api/image/search/' + term)
+          .get('/api/stockquery/search/' + term)
           .then(complete)
           .catch(failed);
       }
