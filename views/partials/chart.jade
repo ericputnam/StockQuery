@@ -1,4 +1,8 @@
 .container
+
+  h1 Stock Chart
+  canvas(id='stockChart', class='chart chart-bar', chart-data='data', chart-labels='labels')
+
   #map
   p(ng-show='vm.loading.message') {{ vm.loading.message }}
   .row(class='fixed')
@@ -28,3 +32,4 @@
                 | 
                 a(href='#/edit/{{ marker.id }}', class='btn btn-warning btn-xs')
                   i(class='glyphicon glyphicon-pencil')
+

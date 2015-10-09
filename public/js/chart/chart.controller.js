@@ -1,12 +1,12 @@
 (function() {
   'use strict';
+  
   angular
     .module('stockquery')
-    .controller('MapController', MapController);
+    .controller('ChartController', ChartController)
+    ChartController.$inject = ['$cacheFactory', 'photofactory'];
 
-    MapController.$inject = ['$cacheFactory', 'photofactory'];
-
-    function MapController($cacheFactory, photofactory) {
+    function ChartController($cacheFactory, photofactory) {
       var vm            = this;
       //sorting
       vm.order = {
@@ -14,7 +14,23 @@
         reverse: false
       }
 
-      var infoWindow    = new google.maps.InfoWindow();
+      var riceData = {
+          labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
+          datasets : [
+              {
+                  fillColor : "rgba(172,194,132,0.4)",
+                  strokeColor : "#ACC26D",
+                  pointColor : "#fff",
+                  pointStrokeColor : "#9DB86D",
+                  data : [203000,15600,99000,25100,30500,24700]
+              }
+          ]
+      }
+
+      var stockChart = document.getElementById('stockChart').getContext('2d');
+      new Chart(stockChart).Line(riceData);
+
+      /*var infoWindow    = new google.maps.InfoWindow();
       var tmpMarkers    = [];
       var numberOfCalls = 0;
       var photoData     = '';
@@ -79,6 +95,6 @@
       vm.openInfoWindow = function(e, selectedMarker) {
         e.preventDefault();
         google.maps.event.trigger(selectedMarker, 'click');
-      };
+      };*/
     }
   })();

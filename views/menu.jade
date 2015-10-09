@@ -11,13 +11,13 @@
       ul.nav.navbar-nav
         li(match-route='/')
           a(href='#/') Home
-        li(match-route='/map|/edit/.*')
-          a(href='#/map') Map
+        li(match-route='/chart|/edit/.*')
+          a(href='#/chart') Charts
         li(match-route='/geosearch|/textsearch')
           a(class='dropdown-toggle', data-toggle='dropdown', role='button', aria-expanded='false') Search
             span(class='caret')
           ul(class='dropdown-menu', role='menu')
             li(match-route='/geosearch')
-              a(href="#/geosearch") Geo Search
+              a(href="#/geosearch") Facets
             li(match-route='/textsearch')
               a(href="#/textsearch") Text Search

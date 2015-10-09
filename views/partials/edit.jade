@@ -2,7 +2,7 @@
   .padded
     .panel.panel-info
       .panel-heading
-        h1.panel-title Stock Doc Details
+        h1.panel-title Stock Quote Details
       .panel-body
         .row
           .col-md-7
@@ -13,8 +13,6 @@
               ul.nav.nav-tabs(role='tablist')
                 li.active(role='presentation')
                   a(data-target='#info', aria-controls='info', role='tab', data-toggle='tab') Information
-                li(role='presentation')
-                  a(data-target='#map', aria-controls='map', role='tab', data-toggle='tab') Map
               .tab-content
                 #info.tab-pane.active(role='tabpanel')
                   h2(ng-click='vm.editable = "title"', ng-hide='vm.editable === "title"') {{ vm.image.title }}

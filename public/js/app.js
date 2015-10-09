@@ -15,9 +15,9 @@
         .when('/', {
             templateUrl: '/partials/main'
         })
-        .when('/map', {
-          templateUrl: '/partials/map',
-          controller: 'MapController',
+        .when('/chart', {
+          templateUrl: '/partials/chart',
+          controller: 'ChartController',
           controllerAs: 'vm'
         }).
         when('/geosearch', {
