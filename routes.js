@@ -38,11 +38,6 @@ e.g.
     ).result();
 };*/
 
-/* This function selects one image from the database */
-/*var selectOne = function selectOne(uri) {
-    return db.documents.read('/image/' + uri + '.json').result();
-};*/
-
 /* This function updates the document. From the frontend we are allowed to set/change
 the title of an image.
 */
@@ -131,11 +126,18 @@ var apisinglequote = function(req, res) {
   selectOne(id).then(function(document) {
     if (document.length !== 0) {
       res.json(document);
+    } else {
+      console.log("Document length was size 0.")
     }
   }).catch(function(error) {
     res.status(404).end();
     console.log('Error: ', error);
   });
+};
+
+/* This function selects a single quote from the MarkLogic database */
+var selectOne = function selectOne(uri) {
+    return db.documents.read('/stockquote/' + uri).result();
 };
 
 /* wrapper function to retrieve image data */
