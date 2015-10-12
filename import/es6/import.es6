@@ -14,8 +14,8 @@ script)
 var processImport = function () {
 
   var promise = new Promise(function (resolve, reject) {
-    var startDate = moment("2015-10-01");
-    var endDate = moment("2015-01-01");
+    var startDate = moment("1900-10-01");
+    var endDate = moment("1899-01-01");
 
     while(startDate > endDate){
         var queryEndDate = startDate.format("YYYY-MM-DD");

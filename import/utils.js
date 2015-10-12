@@ -1,14 +1,12 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-"use strict";
+'use strict';
 /*
 Module with helper functions
 */
 
-var unique = function (array) {
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+var unique = function unique(array) {
   return array.reduce(function (accum, current) {
     if (accum.indexOf(current) < 0) {
       accum.push(current);

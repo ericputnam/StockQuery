@@ -12,12 +12,17 @@ To get started first please follow these steps:
 
 ##Capabilities
 
-###Import script
+###Import data script
 The application allows users to import stock quotes from Yahoo Finance using the YQL construct to the MarkLogic database. 
 
 If you are unfamiliar with the YQL syntax browse to the following URL for assistance constructing a query (https://developer.yahoo.com/yql/). Once you are at the YQL page you can enter queries similiar to select * from yahoo.finance.historicaldata where symbol in ("AA","AXP","BA","BAC","CAT","CSCO","CVX","DD","DIS","GE","HD","HPQ","IBM","INTC","JNJ","JPM","KFT","KO","MCD","MMM","MRK","MSFT","PFE","PG","T","TRV","UTX","VZ","WMT","XOM") and startDate = "2015-09-01" and endDate = "2015-10-02. This Query pulls down all of the DJIA historical quotes from September to October of 2015.
 
 The import script itself is written using ES6 and has been complied to ES5 using [Babel](http://babeljs.io/).
+
+###Import xquery code script
+Scripts exist in order to import the backend XQuery code that is nessesary to execute certain processing scripts within the application. To import these scripts you'll need to run the following command 'node ./import/importmodules.js'.
+
+The XQuery code that is imported is all stored in the folder titled ./import/modules/*. You can also run the test invoke script called invokemodules.js, which essentially calls the main search function with a value of your choice. The default value is set to the 'CAT' stock symbol, but you can feel free to edit this value by modifying ./import/es6/invokemodule.es6 with a new values, and then executing the ./run.sh script. After performing those steps, simply run node ./import/invokemodule.js, which should return a JSON representation of stock quotes.
 
 ###Frontend
 The idea for the front end is to utilize AngularJS to query MarkLogic and pull back relavant stock information for a given time range.

@@ -32,6 +32,28 @@ export var insert = (type, param, data) => {
   }
 };
 
+export var insertCodeModules = () => {
+  db.config.extlibs.write({
+    path: '/invoke/searchFunctions.xqy',
+    contentType: 'application/xquery',
+    title: 'XQuery Search Functions',
+    description: 'XQuery Search Functions for Stock Query App',
+    source: fs.createReadStream('./modules/searchFunctions.xqy')
+  });
+}
+
+/* invoke the main search function for the CAT stock */
+export var invokeSearchFunctions = (param) => {
+  db.invoke({
+    path: '/ext/invoke/searchFunctions.xqy', 
+    variables: {param1: param}
+  }).result(function(response) {
+    console.log(JSON.stringify(response, null, 2));
+  }, function(error) {
+    console.log(JSON.stringify(error, null, 2));
+  });
+}
+
 export var getCountries = () => {
   var countries = [];
   var promise = new Promise((resolve, reject) => {
