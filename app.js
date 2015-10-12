@@ -30,6 +30,7 @@ Basic route configuration
 router.route('/').get(routes.index);
 router.route('/api/').get(apiroutes.index);
 router.route('/api/stockquery/:id').get(apiroutes.getsinglequote);
+router.route('/api/stockquery/chart/:symbol').get(apiroutes.getchartdata);
 router.route('/api/image/search/:radius/:lat/:lng').get(apiroutes.search);
 router.route('/api/stockquery/search/:term').get(apiroutes.search);
 //router.route('/api/imagedata/:id').get(apiroutes.imagedata);

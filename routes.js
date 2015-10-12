@@ -80,6 +80,13 @@ var search = function search(arg) {
     ).result();*/
 };
 
+var getchartdata = function getChartData(arg) {
+  return db.invoke({
+    path: '/ext/invoke/searchFunctions.xqy', 
+    variables: {param1: arg}
+  }).result()
+}
+
 var semantic = function semantic(country) {
   country = country.replace(' ', '_');
   var query = [
@@ -118,6 +125,21 @@ var apiindex = function(req, res) {
     }).catch(function(error) {
       console.log('Error: ', error);
     });
+};
+
+/* wrapper function for getting the chart data for a single quote. */
+var apigetchartdata = function(req, res) {
+  var symbol = req.params.symbol;
+  getchartdata(symbol).then(function(document) {
+    if (document.length !== 0) {
+      res.json(document);
+    } else {
+      console.log("Document length was size 0.")
+    }
+  }).catch(function(error) {
+    res.status(404).end();
+    console.log('Error: ', error);
+  });
 };
 
 /* wrapper function to retrieve one document information */
@@ -229,6 +251,7 @@ module.exports = {
     api : {
         index: apiindex,
         getsinglequote: apisinglequote,
+        getchartdata : apigetchartdata,
         imagedata: apiimagedata,
         update: apiupdate,
         search: apisearch,

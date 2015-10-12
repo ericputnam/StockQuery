@@ -6,29 +6,59 @@
     .controller('ChartController', ChartController)
     ChartController.$inject = ['$cacheFactory', 'photofactory'];
 
+    
+
     function ChartController($cacheFactory, photofactory) {
-      var vm            = this;
-      //sorting
-      vm.order = {
-        sortBy: 'data.created',
-        reverse: false
-      }
+      var vm = this;
+        //if (vm.term || vm.term.length !== 0) {
+      photofactory.getChartData("CAT")
+      .then(function(data) {
+        vm.results = data;
 
-      var riceData = {
-          labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
-          datasets : [
-              {
-                  fillColor : "rgba(172,194,132,0.4)",
-                  strokeColor : "#ACC26D",
-                  pointColor : "#fff",
-                  pointStrokeColor : "#9DB86D",
-                  data : [203000,15600,99000,25100,30500,24700]
-              }
-          ]
-      }
+        //console.log(vm.results[0].value.Quote.Date);
+        var chartData = [];
+        var chartDates = [];
+        console.log(vm.results[0].value.Quote.length);
+        for(var i = 0; i < vm.results[0].value.Quote.length; i++){
+          var quoteObj = vm.results[0].value.Quote[i];
+          chartDates.push(quoteObj['Date']);
+          chartData.push(quoteObj.Close);
+        }
+        console.log(chartData);
+        
+        //sorting
+        vm.order = {
+          sortBy: 'data.created',
+          reverse: false
+        }
 
-      var stockChart = document.getElementById('stockChart').getContext('2d');
-      new Chart(stockChart).Line(riceData);
+        var riceData = {
+            labels : chartDates,
+            //labels : vm.results[0].value.Quote.Date,
+            datasets : [
+                {
+                    fillColor : "rgba(172,194,132,0.4)",
+                    strokeColor : "#ACC26D",
+                    pointColor : "#fff",
+                    pointStrokeColor : "#9DB86D",
+                    //data : [203000,15600,99000,25100,30500,24700]
+                    data: chartData
+                }
+            ]
+        }
+
+        var stockChart = document.getElementById('stockChart').getContext('2d');
+        new Chart(stockChart).Line(riceData);
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
+
+      
+
+
+
+      
 
       /*var infoWindow    = new google.maps.InfoWindow();
       var tmpMarkers    = [];

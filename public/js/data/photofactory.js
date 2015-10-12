@@ -13,6 +13,7 @@
         update: update,
         geoSearch: geoSearch,
         textSearch: textSearch,
+        getChartData: getChartData,
         semanticData: semanticData
       };
 
@@ -48,6 +49,13 @@
       function textSearch(term) {
         return $http
           .get('/api/stockquery/search/' + term)
+          .then(complete)
+          .catch(failed);
+      }
+
+      function getChartData(symbol) {
+        return $http
+          .get('/api/stockquery/chart/' + symbol)
           .then(complete)
           .catch(failed);
       }
