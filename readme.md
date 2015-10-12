@@ -19,10 +19,12 @@ If you are unfamiliar with the YQL syntax browse to the following URL for assist
 
 The import script itself is written using ES6 and has been complied to ES5 using [Babel](http://babeljs.io/).
 
-###Import xquery code script
+###Import XQuery code script
 Scripts exist in order to import the backend XQuery code that is nessesary to execute certain processing scripts within the application. To import these scripts you'll need to run the following command 'node ./import/importmodules.js'.
 
 The XQuery code that is imported is all stored in the folder titled ./import/modules/*. You can also run the test invoke script called invokemodules.js, which essentially calls the main search function with a value of your choice. The default value is set to the 'CAT' stock symbol, but you can feel free to edit this value by modifying ./import/es6/invokemodule.es6 with a new values, and then executing the ./run.sh script. After performing those steps, simply run node ./import/invokemodule.js, which should return a JSON representation of stock quotes.
+
+** A special tip if you are using sublime to modify the project. Make sure to import the MarkLogic XQuery plugin using package control, and then set the syntax of the /modules/*.xqy files by going to view->syntax->MarkLogic->XQuery. You can also toggle Xquery linting by using command+shift+p, typing in MarkLogic, click 'toggle lint on save'.
 
 ###Frontend
 The idea for the front end is to utilize AngularJS to query MarkLogic and pull back relavant stock information for a given time range.
