@@ -87,6 +87,13 @@ var getchartdata = function getChartData(arg) {
   }).result()
 }
 
+/* Pull the stock symbols back from the symbols element index in a JSON response format. */
+var getsymbols = function getsymbols() {
+  return db.xqueryEval(
+     'cts:element-values(xs:QName("Symbol"))'
+  ).result() 
+}
+
 var semantic = function semantic(country) {
   country = country.replace(' ', '_');
   var query = [
@@ -146,6 +153,19 @@ var apigetchartdata = function(req, res) {
 var apisinglequote = function(req, res) {
   var id = req.params.id;
   selectOne(id).then(function(document) {
+    if (document.length !== 0) {
+      res.json(document);
+    } else {
+      console.log("Document length was size 0.")
+    }
+  }).catch(function(error) {
+    res.status(404).end();
+    console.log('Error: ', error);
+  });
+};
+
+var apigetsymbols = function(req, res) {
+  getsymbols().then(function(document) {
     if (document.length !== 0) {
       res.json(document);
     } else {
@@ -252,6 +272,7 @@ module.exports = {
         index: apiindex,
         getsinglequote: apisinglequote,
         getchartdata : apigetchartdata,
+        getsymbols : apigetsymbols,
         imagedata: apiimagedata,
         update: apiupdate,
         search: apisearch,

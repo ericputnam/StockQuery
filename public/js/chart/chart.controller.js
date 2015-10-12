@@ -11,6 +11,13 @@
     function ChartController($cacheFactory, photofactory) {
       var vm = this;
         //if (vm.term || vm.term.length !== 0) {
+
+      photofactory.getSymbols("me")
+      .then(function(data) {
+        vm.results = data;
+        console.log(vm.results);
+      });
+
       photofactory.getChartData("CAT")
       .then(function(data) {
         vm.results = data;
@@ -18,13 +25,13 @@
         //console.log(vm.results[0].value.Quote.Date);
         var chartData = [];
         var chartDates = [];
-        console.log(vm.results[0].value.Quote.length);
+        //console.log(vm.results[0].value.Quote.length);
         for(var i = 0; i < vm.results[0].value.Quote.length; i++){
           var quoteObj = vm.results[0].value.Quote[i];
           chartDates.push(quoteObj['Date']);
           chartData.push(quoteObj.Close);
         }
-        console.log(chartData);
+        //console.log(chartData);
         
         //sorting
         vm.order = {

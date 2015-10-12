@@ -14,7 +14,8 @@
         geoSearch: geoSearch,
         textSearch: textSearch,
         getChartData: getChartData,
-        semanticData: semanticData
+        semanticData: semanticData,
+        getSymbols: getSymbols
       };
 
       function showAllPhotos() {
@@ -56,6 +57,13 @@
       function getChartData(symbol) {
         return $http
           .get('/api/stockquery/chart/' + symbol)
+          .then(complete)
+          .catch(failed);
+      }
+
+      function getSymbols(term) {
+        return $http
+          .get('/api/stockquery/symbol/' + term)
           .then(complete)
           .catch(failed);
       }
