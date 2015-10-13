@@ -9,7 +9,7 @@ let $jsonObj := json:object()
 
 (: get a json array of quotes for the the given stock symbol in the input param :)
 let $quoteArray := json:to-array(
-  for $i in fn:doc('/stockquote/1972-03-01quote.json')/query/results/quote[cts:contains(Symbol, $param1)]
+  for $i in fn:doc('/stockquote/2015-08-01quote.json')/query/results/quote[cts:contains(Symbol, $param1)]
   order by $i/Date
   return $i
 )

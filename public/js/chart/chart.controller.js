@@ -6,10 +6,10 @@
     .controller('ChartController', ChartController)
     ChartController.$inject = ['$cacheFactory', '$routeParams', 'photofactory'];
 
-    
-
     function ChartController($cacheFactory, $routeParams, photofactory) {
-      var vm = this;      
+      var vm = this;  
+
+      vm.mySymbol = $routeParams.symbol;
 
       photofactory.getSymbols("me")
       .then(function(data) {
