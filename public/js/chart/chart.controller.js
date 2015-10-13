@@ -4,21 +4,19 @@
   angular
     .module('stockquery')
     .controller('ChartController', ChartController)
-    ChartController.$inject = ['$cacheFactory', 'photofactory'];
+    ChartController.$inject = ['$cacheFactory', '$routeParams', 'photofactory'];
 
     
 
-    function ChartController($cacheFactory, photofactory) {
-      var vm = this;
-        //if (vm.term || vm.term.length !== 0) {
+    function ChartController($cacheFactory, $routeParams, photofactory) {
+      var vm = this;      
 
       photofactory.getSymbols("me")
       .then(function(data) {
-        vm.results = data;
-        console.log(vm.results);
+        vm.dropdown = data;
       });
 
-      photofactory.getChartData("CAT")
+      photofactory.getChartData($routeParams.symbol)
       .then(function(data) {
         vm.results = data;
 

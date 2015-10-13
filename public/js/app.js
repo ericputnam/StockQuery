@@ -15,7 +15,12 @@
         .when('/', {
             templateUrl: '/partials/main'
         })
-        .when('/chart', {
+        .when('/chart/:symbol', {
+          templateUrl: '/partials/chart',
+          controller: 'ChartController',
+          controllerAs: 'vm'
+        }).
+        when('/chart', {
           templateUrl: '/partials/chart',
           controller: 'ChartController',
           controllerAs: 'vm'

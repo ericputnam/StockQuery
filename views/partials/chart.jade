@@ -1,6 +1,16 @@
 .container
 
   h1 Stock Chart
+
+  .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li(match-route='/')
+          a(class='dropdown-toggle', data-toggle='dropdown', role='button', aria-expanded='false') Stock Symbols
+            span(class='caret')
+          ul(class='dropdown-menu', role='menu')
+            li(ng-repeat='result in vm.dropdown')
+              a(href='#/chart/{{result.value}}') {{ result.value }}
+
   canvas(id='stockChart', class='chart chart-bar', chart-data='data', chart-labels='labels')
 
   #map
